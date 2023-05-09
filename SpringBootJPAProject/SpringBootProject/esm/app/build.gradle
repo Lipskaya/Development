@@ -1,0 +1,18 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.3'
+}
+
+group 'com.epam'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation project(':model')
+}
+
+test {
+    useJUnitPlatform()
+}

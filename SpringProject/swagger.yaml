@@ -1,0 +1,357 @@
+openapi: 3.0.3
+info:
+  title: TITLE
+  description: DESCRIPTION
+  termsOfService: http://terms-of-services.url
+  license:
+    name: LICENSE
+    url: http://url-to-license.com
+  version: 1.0.0-oas3
+servers:
+  - url: http://localhost:8080
+    description: Inferred Url
+tags:
+  - name: certificate-controller
+    description: Certificate Controller
+  - name: tag-controller
+    description: Tag Controller
+paths:
+  /SpringMVCRESTful/certificates:
+    get:
+      tags:
+        - certificate-controller
+      summary: getCertificates
+      operationId: getCertificatesUsingGET
+      parameters:
+        - name: search
+          in: query
+          description: search
+          required: false
+          style: form
+          schema:
+            type: string
+        - name: tag
+          in: query
+          description: tag
+          required: false
+          style: form
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: sort
+          required: false
+          style: form
+          schema:
+            type: string
+        - name: direction
+          in: query
+          description: direction
+          required: false
+          style: form
+          schema:
+            type: string
+        - name: itemsPerPage
+          in: query
+          description: itemsPerPage
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: page
+          in: query
+          description: page
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateListResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - certificate-controller
+      summary: updateCertificate
+      operationId: updateCertificateUsingPUT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Certificate'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - certificate-controller
+      summary: addCertificate
+      operationId: addCertificateUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Certificate'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /SpringMVCRESTful/certificates/{certificateId}:
+    get:
+      tags:
+        - certificate-controller
+      summary: getCertificate
+      operationId: getCertificateUsingGET
+      parameters:
+        - name: certificateId
+          in: path
+          description: certificateId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - certificate-controller
+      summary: deleteCertificate
+      operationId: deleteCertificateUsingDELETE
+      parameters:
+        - name: certificateId
+          in: path
+          description: certificateId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /SpringMVCRESTful/tags:
+    get:
+      tags:
+        - tag-controller
+      summary: getTags
+      operationId: getTagsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - tag-controller
+      summary: updateTag
+      operationId: updateTagUsingPUT
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - tag-controller
+      summary: addTag
+      operationId: addTagUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /SpringMVCRESTful/tags/{tagId}:
+    get:
+      tags:
+        - tag-controller
+      summary: getTag
+      operationId: getTagUsingGET
+      parameters:
+        - name: tagId
+          in: path
+          description: tagId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - tag-controller
+      summary: deleteTag
+      operationId: deleteTagUsingDELETE
+      parameters:
+        - name: tagId
+          in: path
+          description: tagId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    Certificate:
+      title: Certificate
+      type: object
+      properties:
+        createDay:
+          type: string
+          format: date-time
+        description:
+          type: string
+        id:
+          type: integer
+          format: int32
+        lastUpdateDate:
+          type: string
+          format: date-time
+        name:
+          type: string
+        price:
+          type: number
+          format: double
+        tagList:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    CertificateListResponse:
+      title: CertificateListResponse
+      type: object
+      properties:
+        certificates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certificate'
+        itemsPerPage:
+          type: integer
+          format: int32
+        page:
+          type: integer
+          format: int32
+        totalItems:
+          type: integer
+          format: int32
+    Tag:
+      title: Tag
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string

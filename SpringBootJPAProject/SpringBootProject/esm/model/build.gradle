@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'com.epam'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.hateoas:spring-hateoas:1.4.1'
+}
+
+test {
+    useJUnitPlatform()
+}
